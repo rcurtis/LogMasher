@@ -39,8 +39,22 @@ namespace LogMasher.Library
             entry.LogLevel = ParseLogLevel(split);
             entry.ThreadNumber = int.Parse(split[(int) Tokens.ThreadNumber].Substring(1, 1));
             entry.Category = split[(int) Tokens.Category];
-            entry.Body = split[(int) Tokens.Body];
+            entry.Body = TrimLeadingSpacingAndPunctuation(split[(int) Tokens.Body]);
             return entry;
+        }
+
+        private static string TrimLeadingSpacingAndPunctuation(string body)
+        {
+            var firstAlphaCharIndex = 0;
+            foreach (var ch in body)
+            {
+                if (char.IsLetter(ch))
+                {
+                    firstAlphaCharIndex = body.IndexOf(ch);
+                    break;
+                }
+            }
+            return body.Substring(firstAlphaCharIndex, body.Length - firstAlphaCharIndex);
         }
 
         private static LogEntry.LogLevels ParseLogLevel(IReadOnlyList<string> split)

@@ -24,7 +24,6 @@ namespace LogMasher.Library
 
         public LogEntry ParseLine(string line)
         {
-            //const string linePattern = @"(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}\.\d{3}) (\w+) (\[\d\]) (\w+)";
             const string linePattern = @"(\[\d+\]) (\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}\]) (\[\w+\]) (\[\w+\]) ";
             var regex = new Regex(linePattern, RegexOptions.IgnoreCase);
             var split = regex.Split(line).ToList();

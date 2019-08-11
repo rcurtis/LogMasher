@@ -87,5 +87,14 @@ namespace LogMasher.Library.Tests
             var result = logParser.ParseLine(Input);
             Assert.AreEqual("Change CreditsCents delta: 332 balance: 1120", result.Body);
         }
+
+        [TestMethod]
+        public void ToString_ReturnsUnifiedOutput()
+        {
+            var logParser = GetParser();
+            var expected = "2019-08-10 19:00:07.482 INFO [2864] persist - Change CreditsCents delta: 332 balance: 1120";
+            var result = logParser.ParseLine(Input);
+            Assert.AreEqual(expected, result.ToString());
+        }
     }
 }

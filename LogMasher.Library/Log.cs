@@ -9,10 +9,18 @@ namespace LogMasher.Library
 
         public int EntriesCount => _entries.Count;
         public string Name { get; private set; }
+        public IEnumerable<LogEntry> GetEntries => _entries;
 
         public Log(string logName)
         {
             Name = logName;
+        }
+
+        public Log(string logName, ILogParser parser, IInput input) : this(logName)
+        {
+            var data = input.GetLines();
+            var parsed = parser.Parse(data);
+            AddEntries(parsed);
         }
 
         public void AddEntry(LogEntry line)
@@ -20,7 +28,7 @@ namespace LogMasher.Library
             if(line == null)
                 throw new ArgumentNullException(nameof(line));
 
-            _entries.Add(new LogEntry());   
+            _entries.Add(line);   
         }
 
         public void AddEntries(IEnumerable<LogEntry> lines)

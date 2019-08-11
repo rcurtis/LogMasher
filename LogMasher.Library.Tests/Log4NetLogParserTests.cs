@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace LogMasher.Library.Tests
 {
     [TestClass]
-    public class LogParserTests
+    public class Log4NetLogParserTests
     {
         private static ILogParser GetParser()
         {
@@ -84,7 +84,16 @@ namespace LogMasher.Library.Tests
         {
             var logParser = GetParser();
             var result = logParser.ParseLine(Input);
-            Assert.AreEqual(" - Response from", result.Body);
+            Assert.AreEqual("Response from", result.Body);
+        }
+
+        [TestMethod]
+        public void ToString_ReturnsUnifiedOutput()
+        {
+            var logParser = GetParser();
+            var expected = "2019-08-11 00:05:05.519 DEBUG [1] PreGameShareResponse - Response from";
+            var result = logParser.ParseLine(Input);
+            Assert.AreEqual(expected, result.ToString());
         }
     }
 }
