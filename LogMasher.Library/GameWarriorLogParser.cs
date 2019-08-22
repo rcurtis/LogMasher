@@ -51,7 +51,7 @@ namespace LogMasher.Library
             var entry = new LogEntry();
             entry.DateTime = DateTime.Parse(split[(int)Tokens.DateTime]);
             entry.LogLevel = ParseLogLevel(split);
-            entry.ThreadNumber = int.Parse(split[(int) Tokens.ThreadNumber]);
+            entry.Thread = split[(int) Tokens.ThreadNumber];
             entry.Category = split[(int) Tokens.Category];
             entry.Body = split[(int) Tokens.Body];
             return entry;

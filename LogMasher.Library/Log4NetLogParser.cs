@@ -13,7 +13,7 @@ namespace LogMasher.Library
             Date = 1,
             Time,
             LogLevel,
-            ThreadNumber,
+            Thread,
             Category,
             Body
         };
@@ -25,11 +25,46 @@ namespace LogMasher.Library
 
         public LogEntry ParseLine(string line)
         {
-            const string linePattern = @"(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}\.\d{3}) (\w+) (\[\d\]) (\w+)";
-            var regex = new Regex(linePattern, RegexOptions.IgnoreCase);
-            var split = regex.Split(line);
+                var split = Tokenize(line);
+                var tokens = split.ToList().GetRange(0, 4);
+                ManuallyParse(split[4], tokens);
 
-            return GetLogEntry(split);
+                return GetLogEntry(tokens);
+        }
+
+        private static string[] Tokenize(string line)
+        {
+            const string secondaryPattern = @"(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}\.\d{3}) (\w+)";
+            var regex = new Regex(secondaryPattern, RegexOptions.IgnoreCase);
+            var split = regex.Split(line);
+            return split;
+        }
+
+        private static void ManuallyParse(string unparsed, List<string> tokens)
+        {
+            ParseCategory(unparsed, tokens);
+            unparsed = unparsed.Substring(unparsed.IndexOf(']') + 2);
+            var nextSpace = ParseThread(unparsed, tokens);
+            ParseBody(tokens, unparsed, nextSpace);
+        }
+
+        private static void ParseBody(List<string> tokens, string unparsed, int nextSpace)
+        {
+            tokens.Add(unparsed.Substring(nextSpace));
+        }
+
+        private static int ParseThread(string unparsed, List<string> tokens)
+        {
+            var nextSpace = unparsed.IndexOf(' ');
+            var thread = unparsed.Substring(0, nextSpace);
+            tokens.Add(thread);
+            return nextSpace;
+        }
+
+        private static void ParseCategory(string unparsed, List<string> tokens)
+        {
+            var category = unparsed.Substring(unparsed.IndexOf('[') + 1, unparsed.IndexOf(']') - 2);
+            tokens.Add(category);
         }
 
         private static LogEntry GetLogEntry(IReadOnlyList<string> split)
@@ -37,7 +72,7 @@ namespace LogMasher.Library
             var entry = new LogEntry();
             entry.DateTime = DateTime.Parse(split[(int) Tokens.Date] + " " + split[(int) Tokens.Time]);
             entry.LogLevel = ParseLogLevel(split);
-            entry.ThreadNumber = int.Parse(split[(int) Tokens.ThreadNumber].Substring(1, 1));
+            entry.Thread = split[(int) Tokens.Thread];
             entry.Category = split[(int) Tokens.Category];
             entry.Body = TrimLeadingSpacingAndPunctuation(split[(int) Tokens.Body]);
             return entry;

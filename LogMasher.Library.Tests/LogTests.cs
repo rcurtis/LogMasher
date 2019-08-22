@@ -50,5 +50,33 @@ namespace LogMasher.Library.Tests
                 log.AddEntries(new List<LogEntry> { null, null })
                 );
         }
+
+        [TestMethod]
+        public void Log_ReadFromMemoryInput()
+        {
+            var input = new MemoryInput(new List<string>
+            {
+                "[2864] [2019-08-10 19:00:07.482] [persist] [info] Change CreditsCents delta: 332 balance: 1120",
+                "[2864] [2019-08-10 21:00:07.482] [persist] [info] Change CreditsCents delta: 332 balance: 1120"
+            });
+            var log = new Log("GameWarrior", new GameWarriorLogParser(), input);
+            Assert.AreEqual(2, log.EntriesCount);
+        }
+
+        [TestMethod]
+        public void Log_ReadGWLogsFromFileInput()
+        {
+            var input = new FileInput("GW_TestLog1.log");
+            var log = new Log("GameWarrior", new GameWarriorLogParser(), input);
+            Assert.AreEqual(5, log.EntriesCount);
+        }
+
+        [TestMethod]
+        public void Log_ReadMGPLogsFromFileInput()
+        {
+            var input = new FileInput("MGP_TestLog1.log");
+            var log = new Log("GameWarrior", new Log4NetLogParser(), input);
+            Assert.AreEqual(13, log.EntriesCount);
+        }
     }
 }

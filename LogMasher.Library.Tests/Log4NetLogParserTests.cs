@@ -14,6 +14,8 @@ namespace LogMasher.Library.Tests
         }
 
         private static string Input => "2019-08-11 00:05:05.519 DEBUG [1] PreGameShareResponse - Response from";
+        private static string NamedThreadInput => "2019-08-11 03:27:31.164 INFO [Platform] Machine.Idle - New bingo card requested: 12...";
+        private static string PeriodInLoggerName => "2019-08-11 03:27:31.164 INFO [Platform] Machine.Idle - New bingo card requested: 12...";
 
         [TestMethod]
         public void Creation()
@@ -56,6 +58,14 @@ namespace LogMasher.Library.Tests
         }
 
         [TestMethod]
+        public void Parse_WhereThreadHasAName_NotNumber()
+        {
+            var logParser = GetParser();
+            var result = logParser.ParseLine(NamedThreadInput);
+            //Assert.AreEqual(LogEntry.LogLevels.DEBUG, result.LogLevel);
+        }
+
+        [TestMethod]
         public void Parse_FindsLogLevel()
         {
             var logParser = GetParser();
@@ -68,7 +78,7 @@ namespace LogMasher.Library.Tests
         {
             var logParser = GetParser();
             var result = logParser.ParseLine(Input);
-            Assert.AreEqual(1, result.ThreadNumber);
+            Assert.AreEqual("1", result.Thread);
         }
 
         [TestMethod]

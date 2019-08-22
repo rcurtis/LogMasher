@@ -17,7 +17,7 @@ namespace LogMasher.Library.Tests
                 Category = "PreProcessor",
                 DateTime = DateTime.Now,
                 LogLevel = LogEntry.LogLevels.DEBUG,
-                ThreadNumber = 1,
+                Thread = "1",
             },
             new LogEntry
             {
@@ -25,7 +25,7 @@ namespace LogMasher.Library.Tests
                 Category = "Jackpot",
                 DateTime = DateTime.Now.AddMilliseconds(2),
                 LogLevel = LogEntry.LogLevels.INFO,
-                ThreadNumber = 1
+                Thread = "1"
             },
             new LogEntry
             {
@@ -33,7 +33,7 @@ namespace LogMasher.Library.Tests
                 Category = "Update",
                 DateTime = DateTime.Now.AddHours(1),
                 LogLevel = LogEntry.LogLevels.WARN,
-                ThreadNumber = 1
+                Thread = "1"
             },
             new LogEntry
             {
@@ -41,7 +41,7 @@ namespace LogMasher.Library.Tests
                 Category = "87fhjasdf",
                 DateTime = DateTime.Now.AddDays(5),
                 LogLevel = LogEntry.LogLevels.FATAL,
-                ThreadNumber = 1
+                Thread = "1"
             },
         };
         #endregion

@@ -69,7 +69,7 @@ namespace LogMasher.Library.Tests
         {
             var logParser = GetParser();
             var result = logParser.ParseLine(Input);
-            Assert.AreEqual(2864, result.ThreadNumber);
+            Assert.AreEqual("2864", result.Thread);
         }
 
         [TestMethod]
