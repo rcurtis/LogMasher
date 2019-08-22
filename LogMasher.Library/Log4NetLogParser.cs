@@ -34,8 +34,8 @@ namespace LogMasher.Library
 
         private static string[] Tokenize(string line)
         {
-            const string secondaryPattern = @"(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}\.\d{3}) (\w+)";
-            var regex = new Regex(secondaryPattern, RegexOptions.IgnoreCase);
+            const string pattern = @"(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}\.\d{3}) (\w+)";
+            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
             var split = regex.Split(line);
             return split;
         }

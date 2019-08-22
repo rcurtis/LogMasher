@@ -108,5 +108,16 @@ namespace LogMasher.Library.Tests
             Assert.AreEqual(result[2].Entry, _entries[2]);
             Assert.AreEqual(result[3].Entry, _entries[3]);
         }
+
+        [TestMethod]
+        public void MergeLog_DifferentLoggers_Merge()
+        {
+            var gwLog = new Log("GameWarrior", new GameWarriorLogParser(), new FileInput("GW_TestLog1.log"));
+            var mgpLog = new Log("MGP", new Log4NetLogParser(), new FileInput("MGP_TestLog1.log"));
+            var aggregate = new AggregateLog();
+            aggregate.MergeLog(gwLog);
+            aggregate.MergeLog(mgpLog);
+            var output = aggregate.ToString();
+        }
     }
 }

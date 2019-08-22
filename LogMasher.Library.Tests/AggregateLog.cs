@@ -31,7 +31,7 @@ namespace LogMasher.Library.Tests
            var builder = new StringBuilder();
            foreach (var entry in NamedEntries)
            {
-               builder.Append($"{entry.LogName}::{entry.Entry}{Environment.NewLine}");
+               builder.AppendLine($"{entry.LogName}::{entry.Entry}");
            }
 
            return builder.ToString();

@@ -8,7 +8,7 @@ namespace LogMasher.Library.Tests
     [TestClass]
     public class LogTests
     {
-        public static Log GetLog()
+        private static Log GetLog()
         {
             return new Log("GameWarrior");
         }
