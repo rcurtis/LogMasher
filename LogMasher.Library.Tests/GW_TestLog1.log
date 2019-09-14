@@ -1,0 +1,5 @@
+﻿[3360] [2019-08-10 19:00:13.632] [persist] [info] Change NonrestrictedCreditsCents delta: 0 balance: 0
+[3360] [2019-08-10 19:00:13.632] [persist] [info] Set Wagers to: 85 0 0
+[3360] [2019-08-10 19:00:13.632] [bingo] [info] PickCombo: 0_0_0_0_0_unused_0 20 4
+[3360] [2019-08-10 19:00:13.645] [bingo] [error] Called without actual populated data!
+[3360] [2019-08-10 19:00:13.645] [game] [info] CurrentGame Info:

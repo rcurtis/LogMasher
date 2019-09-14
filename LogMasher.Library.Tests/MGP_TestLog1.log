@@ -1,0 +1,13 @@
+﻿2019-08-07 03:27:31.164 INFO [Platform] Machine.Idle - New bingo card requested: 12,21,36,46,72,1,25,31,58,70,10,30,0,52,69,2,16,43,51,66,11,24,35,55,73
+2019-08-11 03:27:31.304 INFO [Platform] Machine.Idle - New bingo card requested: 9,21,40,54,73,8,25,42,49,75,2,28,0,46,64,13,29,41,59,65,4,30,43,50,71
+2019-08-11 03:27:31.474 INFO [Platform] Machine.Idle - New bingo card requested: 13,30,36,48,68,10,24,40,58,66,11,21,0,55,62,4,26,39,46,69,15,20,34,49,67
+2019-08-11 03:27:31.614 INFO [Platform] Machine.Idle - New bingo card requested: 14,23,40,48,72,4,30,34,49,71,6,22,0,53,69,3,19,31,60,70,1,21,35,46,66
+2019-08-11 03:27:31.784 INFO [Platform] Machine.Idle - New bingo card requested: 8,22,40,50,70,14,24,36,57,69,11,30,0,59,73,6,17,32,52,74,13,16,37,58,64
+2019-08-11 03:27:32.734 INFO [Platform] Machine.InPlay - Beginning game: title=SugarSkulls; denom=1; linesPlayed=25; betPerLine=2;
+2019-08-11 03:27:32.734 DEBUG [Platform] CommunityGameManager - Sending contribution message.  Amount=5
+2019-08-11 03:27:32.834 INFO [Platform] Machine.FetchingResults - Received community prize ack
+2019-08-11 03:27:32.834 INFO [Platform] Machine.FetchingResults - Not ready: communityGameReady=True; ballDrawReady=False
+2019-08-11 03:27:32.844 INFO [Platform] Machine.FetchingResults - Ball draw received from RN server.
+2019-08-11 03:27:35.454 INFO [Platform] Machine.CheckOverSpecialWinLimit - Game ended: paytableWin=0; progWin=0; endingRegularCents=945; endingRestrictedCents=0; endingNonresCents=0
+2019-08-11 03:27:36.314 INFO [Platform] Machine.InPlay - Beginning game: title=SugarSkulls; denom=1; linesPlayed=25; betPerLine=2;
+2019-08-11 03:27:36.314 DEBUG [Platform] CommunityGameManager - Sending contribution message.  Amount=5
